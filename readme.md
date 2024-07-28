@@ -5,8 +5,7 @@
 ## Структура проекта 📂
 
 ```
-FamilyTreeProject/
-│
+
 ├── src/
 │   └── Family_Tree/
 │       ├── FamilyTree.java
