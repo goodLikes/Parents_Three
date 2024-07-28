@@ -16,12 +16,12 @@ public class Main {
         FamilyTree familyTree = new FamilyTree();
 
         // Создание людей
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         try {
-            Human father = new Human("Иван", Gender.MALE, sdf.parse("01-01-1980"));
-            Human mother = new Human("Анна", Gender.FEMALE, sdf.parse("02-02-1982"));
-            Human child1 = new Human("Алиса", Gender.FEMALE, sdf.parse("03-03-2010"));
-            Human child2 = new Human("Борис", Gender.MALE, sdf.parse("04-04-2012"));
+            Human father = new Human("Иван", Gender.MALE, sdf.parse("01-01-1980 08:00:00"));
+            Human mother = new Human("Анна", Gender.FEMALE, sdf.parse("02-02-1982 09:00:00"));
+            Human child1 = new Human("Алиса", Gender.FEMALE, sdf.parse("03-03-2010 10:00:00"));
+            Human child2 = new Human("Борис", Gender.MALE, sdf.parse("04-04-2012 11:00:00"));
 
             // Добавление детей к родителям
             father.addChild(child1);
