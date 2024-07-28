@@ -9,12 +9,14 @@ public class Human implements Serializable {
     private String name;
     private Gender gender;
     private List<Human> children;
+    private List<Human> parents;
 
     // Конструктор
     public Human(String name, Gender gender) {
         this.name = name;
         this.gender = gender;
         this.children = new ArrayList<>();
+        this.parents = new ArrayList<>();
     }
 
     // Геттеры
@@ -30,9 +32,19 @@ public class Human implements Serializable {
         return children;
     }
 
+    public List<Human> getParents() {
+        return parents;
+    }
+
     // Метод для добавления ребенка
     public void addChild(Human child) {
         this.children.add(child);
+        child.addParent(this);
+    }
+
+    // Метод для добавления родителя
+    public void addParent(Human parent) {
+        this.parents.add(parent);
     }
 
     // Переопределение метода toString
