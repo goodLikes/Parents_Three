@@ -1,7 +1,8 @@
-package Family_Tree;
+package Family_Tree.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Human implements Serializable {
@@ -10,11 +11,13 @@ public class Human implements Serializable {
     private Gender gender;
     private List<Human> children;
     private List<Human> parents;
+    private Date dateOfBirth; // Добавлено свойство дата рождения
 
     // Конструктор
-    public Human(String name, Gender gender) {
+    public Human(String name, Gender gender, Date dateOfBirth) {
         this.name = name;
         this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
         this.children = new ArrayList<>();
         this.parents = new ArrayList<>();
     }
@@ -36,6 +39,10 @@ public class Human implements Serializable {
         return parents;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     // Метод для добавления ребенка
     public void addChild(Human child) {
         this.children.add(child);
@@ -50,6 +57,6 @@ public class Human implements Serializable {
     // Переопределение метода toString
     @Override
     public String toString() {
-        return "Human{name='" + name + "', gender=" + gender + '}';
+        return "Human{name='" + name + "', gender=" + gender + "', dateOfBirth=" + dateOfBirth + '}';
     }
 }

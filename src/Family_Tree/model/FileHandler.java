@@ -1,4 +1,4 @@
-package Family_Tree;
+package Family_Tree.model;
 
 import java.io.IOException;
 

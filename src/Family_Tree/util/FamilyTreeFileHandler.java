@@ -1,10 +1,13 @@
-package Family_Tree;
+package Family_Tree.util;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import Family_Tree.model.FamilyTree;
+import Family_Tree.model.FileHandler;
 
 public class FamilyTreeFileHandler implements FileHandler {
     @Override
