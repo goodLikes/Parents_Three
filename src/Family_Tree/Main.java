@@ -13,7 +13,7 @@ import Family_Tree.util.FamilyTreeFileHandler;
 
 public class Main {
     public static void main(String[] args) {
-        FamilyTree familyTree = new FamilyTree();
+        FamilyTree<Human> familyTree = new FamilyTree<>();
 
         // Создание людей
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -39,7 +39,7 @@ public class Main {
             String filename = "resources/familyTree.dat";
 
             // Запись в файл
-            FileHandler fileHandler = new FamilyTreeFileHandler();
+            FileHandler<Human> fileHandler = new FamilyTreeFileHandler<>();
             try {
                 fileHandler.writeToFile(familyTree, filename);
                 System.out.println("Family tree saved to file.");
@@ -49,7 +49,7 @@ public class Main {
 
             // Чтение из файла
             try {
-                FamilyTree loadedFamilyTree = fileHandler.readFromFile(filename);
+                FamilyTree<Human> loadedFamilyTree = fileHandler.readFromFile(filename);
                 System.out.println("Family tree loaded from file.");
 
                 // Исследование дерева

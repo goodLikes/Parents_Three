@@ -9,9 +9,9 @@ import java.util.List;
 import Family_Tree.util.DateOfBirthComparator;
 import Family_Tree.util.NameComparator;
 
-public class FamilyTree implements Serializable, Iterable<Human> {
+public class FamilyTree<T extends FamilyMember> implements Serializable, Iterable<T> {
     private static final long serialVersionUID = 1L;
-    private List<Human> members;
+    private List<T> members;
 
     // Конструктор
     public FamilyTree() {
@@ -19,18 +19,19 @@ public class FamilyTree implements Serializable, Iterable<Human> {
     }
 
     // Метод для добавления члена семьи
-    public void addMember(Human human) {
-        this.members.add(human);
+    public void addMember(T member) {
+        this.members.add(member);
     }
 
     // Метод для получения детей данного человека
-    public List<Human> getChildren(Human parent) {
-        return parent.getChildren();
+    @SuppressWarnings("unchecked")
+    public List<T> getChildren(T parent) {
+        return (List<T>) parent.getChildren();
     }
 
     // Метод для поиска члена семьи по имени
-    public Human findMemberByName(String name) {
-        for (Human member : members) {
+    public T findMemberByName(String name) {
+        for (T member : members) {
             if (member.getName().equals(name)) {
                 return member;
             }
@@ -40,22 +41,22 @@ public class FamilyTree implements Serializable, Iterable<Human> {
 
     // Метод для сортировки по имени
     public void sortByName() {
-        Collections.sort(members, new NameComparator());
+        Collections.sort(members, new NameComparator<>());
     }
 
     // Метод для сортировки по дате рождения
     public void sortByDateOfBirth() {
-        Collections.sort(members, new DateOfBirthComparator());
+        Collections.sort(members, new DateOfBirthComparator<>());
     }
 
     // Реализация интерфейса Iterable
     @Override
-    public Iterator<Human> iterator() {
+    public Iterator<T> iterator() {
         return members.iterator();
     }
 
     // Геттер для членов семьи
-    public List<Human> getMembers() {
+    public List<T> getMembers() {
         return members;
     }
 }

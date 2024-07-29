@@ -1,62 +1,24 @@
 package Family_Tree.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Human implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private String name;
+public class Human extends FamilyMember {
     private Gender gender;
-    private List<Human> children;
-    private List<Human> parents;
-    private Date dateOfBirth; // Добавлено свойство дата рождения
 
     // Конструктор
     public Human(String name, Gender gender, Date dateOfBirth) {
-        this.name = name;
+        super(name, dateOfBirth);
         this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.children = new ArrayList<>();
-        this.parents = new ArrayList<>();
     }
 
-    // Геттеры
-    public String getName() {
-        return name;
-    }
-
+    // Геттер для пола
     public Gender getGender() {
         return gender;
-    }
-
-    public List<Human> getChildren() {
-        return children;
-    }
-
-    public List<Human> getParents() {
-        return parents;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    // Метод для добавления ребенка
-    public void addChild(Human child) {
-        this.children.add(child);
-        child.addParent(this);
-    }
-
-    // Метод для добавления родителя
-    public void addParent(Human parent) {
-        this.parents.add(parent);
     }
 
     // Переопределение метода toString
     @Override
     public String toString() {
-        return "Human{name='" + name + "', gender=" + gender + "', dateOfBirth=" + dateOfBirth + '}';
+        return "Human{name='" + getName() + "', gender=" + gender + "', dateOfBirth=" + getDateOfBirth() + '}';
     }
 }
