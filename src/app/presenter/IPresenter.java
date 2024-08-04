@@ -1,4 +1,4 @@
-package Family_Tree.mvp;
+package app.presenter;
 
 public interface IPresenter {
     void start();

@@ -1,6 +1,8 @@
-package Family_Tree.model;
+package app.model;
 
 import java.io.Serializable;
+
+
 
 public class Human implements Serializable {
     private String name;

@@ -1,4 +1,4 @@
-package Family_Tree.model;
+package app.model;
 
 public class FamilyMember extends Human {
     private int id;

@@ -1,11 +1,12 @@
-package Family_Tree;
+package app;
 
+import java.io.IOException;
 import java.util.Scanner;
 
-import Family_Tree.model.FamilyMember;
-import Family_Tree.model.FamilyTree;
-import Family_Tree.model.Gender;
-import Family_Tree.util.FamilyTreeFileHandler;
+import app.model.FamilyMember;
+import app.model.FamilyTree;
+import app.model.Gender;
+import util.FamilyTreeFileHandler;
 
 public class UserInterface {
     private Scanner scanner;
@@ -77,15 +78,25 @@ public class UserInterface {
     private void saveFamilyTree() {
         System.out.println("Enter file name to save:");
         String fileName = scanner.nextLine();
-        fileHandler.saveToFile(familyTree, fileName);
+        try {
+            fileHandler.saveToFile(familyTree, fileName);
+            System.out.println("Family tree saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving family tree: " + e.getMessage());
+        }
     }
 
     private void loadFamilyTree() {
         System.out.println("Enter file name to load:");
         String fileName = scanner.nextLine();
-        FamilyTree loadedTree = fileHandler.loadFromFile(fileName);
-        if (loadedTree != null) {
-            this.familyTree = loadedTree;
+        try {
+            FamilyTree loadedTree = fileHandler.load(fileName);
+            if (loadedTree != null) {
+                this.familyTree = loadedTree;
+                System.out.println("Family tree loaded successfully.");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading family tree: " + e.getMessage());
         }
     }
 }

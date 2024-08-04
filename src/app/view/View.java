@@ -1,4 +1,4 @@
-package Family_Tree.mvp;
+package app.view;
 
 import java.util.Scanner;
 
@@ -19,8 +19,8 @@ public class View implements IView {
     }
 
     @Override
-    public void displayFamilyTree(String familyTree) {
-        System.out.println(familyTree);
+    public String getInput() {
+        return scanner.nextLine();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class View implements IView {
     }
 
     @Override
-    public String getInput() {
-        return scanner.nextLine();
+    public void displayFamilyTree(String familyTree) {
+        System.out.println(familyTree);
     }
 }

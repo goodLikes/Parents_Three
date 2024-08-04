@@ -1,4 +1,4 @@
-package Family_Tree.model;
+package app.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +13,10 @@ public class FamilyTree implements Serializable {
 
     public void addMember(FamilyMember member) {
         members.add(member);
+    }
+
+    public List<FamilyMember> getMembers() {
+        return members;
     }
 
     @Override

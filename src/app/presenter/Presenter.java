@@ -1,15 +1,17 @@
-package Family_Tree.mvp;
+package app.presenter;
 
-import Family_Tree.model.FamilyMember;
-import Family_Tree.model.Gender;
+import app.model.FamilyMember;
+import app.model.Gender;
+import app.model.IModel;
+import app.view.IView;
 
 public class Presenter implements IPresenter {
-    private IView view;
     private IModel model;
+    private IView view;
 
-    public Presenter(IView view, IModel model) {
-        this.view = view;
+    public Presenter(IModel model, IView view) {
         this.model = model;
+        this.view = view;
     }
 
     @Override

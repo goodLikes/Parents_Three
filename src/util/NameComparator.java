@@ -1,8 +1,8 @@
-package Family_Tree.util;
+package util;
 
 import java.util.Comparator;
 
-import Family_Tree.model.FamilyMember;
+import app.model.FamilyMember;
 
 public class NameComparator implements Comparator<FamilyMember> {
     @Override
