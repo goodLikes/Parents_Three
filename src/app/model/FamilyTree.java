@@ -2,10 +2,12 @@ package app.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class FamilyTree implements Serializable {
-    private List<FamilyMember> members;
+    private final List<FamilyMember> members;
 
     public FamilyTree() {
         this.members = new ArrayList<>();
@@ -16,7 +18,11 @@ public class FamilyTree implements Serializable {
     }
 
     public List<FamilyMember> getMembers() {
-        return members;
+        return Collections.unmodifiableList(members);
+    }
+
+    public void sortBy(Comparator<FamilyMember> comparator) {
+        members.sort(comparator);
     }
 
     @Override

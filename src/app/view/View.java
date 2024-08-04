@@ -3,7 +3,7 @@ package app.view;
 import java.util.Scanner;
 
 public class View implements IView {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public View() {
         this.scanner = new Scanner(System.in);

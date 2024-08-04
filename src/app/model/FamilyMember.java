@@ -1,7 +1,7 @@
 package app.model;
 
 public class FamilyMember extends Human {
-    private int id;
+    private final int id;
 
     public FamilyMember(String name, Gender gender, String dateOfBirth, int id) {
         super(name, gender, dateOfBirth);
@@ -10,11 +10,6 @@ public class FamilyMember extends Human {
 
     public int getId() {
         return id;
-    }
-
-    @Override
-    public String getDateOfBirth() {
-        return super.getDateOfBirth();
     }
 
     @Override

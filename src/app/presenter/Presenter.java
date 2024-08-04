@@ -1,13 +1,16 @@
 package app.presenter;
 
+import java.io.IOException;
+
 import app.model.FamilyMember;
 import app.model.Gender;
 import app.model.IModel;
+import app.model.Model;
 import app.view.IView;
 
 public class Presenter implements IPresenter {
-    private IModel model;
-    private IView view;
+    private final IModel model;
+    private final IView view;
 
     public Presenter(IModel model, IView view) {
         this.model = model;
@@ -42,8 +45,7 @@ public class Presenter implements IPresenter {
         }
     }
 
-    @Override
-    public void addFamilyMember() {
+    private void addFamilyMember() {
         try {
             view.showMessage("Enter name:");
             String name = view.getInput();
@@ -60,22 +62,27 @@ public class Presenter implements IPresenter {
         }
     }
 
-    @Override
-    public void viewFamilyTree() {
+    private void viewFamilyTree() {
         view.displayFamilyTree(model.getFamilyTree().toString());
     }
 
-    @Override
-    public void saveFamilyTree() {
+    private void saveFamilyTree() {
         view.showMessage("Enter file name to save:");
         String fileName = view.getInput();
-        model.saveFamilyTree(fileName);
+        try {
+            ((Model) model).saveFamilyTree(fileName);
+        } catch (IOException e) {
+            view.showMessage("Error saving family tree: " + e.getMessage());
+        }
     }
 
-    @Override
-    public void loadFamilyTree() {
+    private void loadFamilyTree() {
         view.showMessage("Enter file name to load:");
         String fileName = view.getInput();
-        model.loadFamilyTree(fileName);
+        try {
+            ((Model) model).loadFamilyTree(fileName);
+        } catch (IOException | ClassNotFoundException e) {
+            view.showMessage("Error loading family tree: " + e.getMessage());
+        }
     }
 }

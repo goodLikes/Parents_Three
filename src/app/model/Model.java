@@ -9,9 +9,11 @@ import util.FamilyTreeFileHandler;
 
 public class Model implements IModel, Serializable {
     private FamilyTree familyTree;
+    private final FamilyTreeFileHandler fileHandler;
 
-    public Model() {
+    public Model(FamilyTreeFileHandler fileHandler) {
         this.familyTree = new FamilyTree();
+        this.fileHandler = fileHandler;
     }
 
     @Override
@@ -21,24 +23,14 @@ public class Model implements IModel, Serializable {
 
     @Override
     public List<FamilyMember> getFamilyTree() {
-        return new ArrayList<>(familyTree.getMembers()); 
+        return new ArrayList<>(familyTree.getMembers());
     }
 
-    @Override
-    public void saveFamilyTree(String fileName) {
-        try {
-            new FamilyTreeFileHandler().saveToFile(familyTree, fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void saveFamilyTree(String fileName) throws IOException {
+        fileHandler.saveToFile(familyTree, fileName);
     }
 
-    @Override
-    public void loadFamilyTree(String fileName) {
-        try {
-            familyTree = new FamilyTreeFileHandler().load(fileName);
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void loadFamilyTree(String fileName) throws IOException, ClassNotFoundException {
+        this.familyTree = fileHandler.load(fileName);
     }
 }
