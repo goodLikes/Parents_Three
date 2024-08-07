@@ -1,17 +1,22 @@
 package app;
 
-import app.model.Model;
-import app.presenter.Presenter;
+import app.model.FamilyTree;
+import app.presenter.FamilyTreePresenter;
+import app.view.ConsoleView;
 import app.view.IView;
-import app.view.View;
-import util.FamilyTreeFileHandler;
+import util.FileStorage;
+import util.IFamilyTreeStorage;
 
 public class Main {
     public static void main(String[] args) {
-        IView view = new View();
-        FamilyTreeFileHandler fileHandler = new FamilyTreeFileHandler();  
-        Model model = new Model(fileHandler);
-        Presenter presenter = new Presenter(model, view);
-        presenter.start();
+        IView view = new ConsoleView();
+        IFamilyTreeStorage storage = new FileStorage();
+        FamilyTree familyTree = new FamilyTree();
+        FamilyTreePresenter presenter = new FamilyTreePresenter(familyTree, view, storage);
+        
+        // Set the language to Russian (true) or English (false)
+        ((ConsoleView) view).setLanguage(true); // Установите true для русского языка, false для английского
+
+        presenter.run();
     }
 }

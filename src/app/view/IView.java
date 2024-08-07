@@ -5,4 +5,5 @@ public interface IView {
     String getInput();
     void showMessage(String message);
     void displayFamilyTree(String familyTree);
+    boolean isRussian(); // Добавляем метод для получения состояния языка
 }

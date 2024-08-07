@@ -1,8 +1,7 @@
-package util;
-
-import java.util.Comparator;
+package util.comparators;
 
 import app.model.FamilyMember;
+import java.util.Comparator;
 
 public class DateOfBirthComparator implements Comparator<FamilyMember> {
     @Override

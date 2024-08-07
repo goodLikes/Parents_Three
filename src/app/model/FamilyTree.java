@@ -2,35 +2,52 @@ package app.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class FamilyTree implements Serializable {
-    private final List<FamilyMember> members;
+    private List<FamilyMember> members;
+    private List<Relationship> relationships;
 
     public FamilyTree() {
         this.members = new ArrayList<>();
+        this.relationships = new ArrayList<>();
     }
 
     public void addMember(FamilyMember member) {
         members.add(member);
     }
 
-    public List<FamilyMember> getMembers() {
-        return Collections.unmodifiableList(members);
+    public void addRelationship(FamilyMember member1, FamilyMember member2, Relationship.Type type) {
+        relationships.add(new Relationship(member1, member2, type));
     }
 
-    public void sortBy(Comparator<FamilyMember> comparator) {
-        members.sort(comparator);
+    public List<FamilyMember> getMembers() {
+        return members;
+    }
+
+    public List<Relationship> getRelationships() {
+        return relationships;
+    }
+
+    public List<FamilyMember> findMembersByName(String name) {
+        List<FamilyMember> foundMembers = new ArrayList<>();
+        for (FamilyMember member : members) {
+            if (member.getName().equalsIgnoreCase(name)) {
+                foundMembers.add(member);
+            }
+        }
+        return foundMembers;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (FamilyMember member : members) {
-            sb.append(member).append("\n");
+            builder.append(member).append("\n");
         }
-        return sb.toString();
+        for (Relationship relationship : relationships) {
+            builder.append(relationship).append("\n");
+        }
+        return builder.toString();
     }
 }
